@@ -38,6 +38,11 @@ To get setup, you'll want to download the players folder from the project. Then 
 
 1. To update the content of the popup, simply adjust the HTML inside of the two asides.
 
+### File structure
+
+1. I haven't modified most things in the fork. I've added the new modifications to the players folder and the contents within that.
+2. I've also added the original cards and all potential cards to the all-cards folder.
+
 ### Full example
 
 Available at : https://speakerjones.com/ruby.html
