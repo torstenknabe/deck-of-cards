@@ -1,0 +1,1228 @@
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+body {
+  background-color: #45a173;
+  color: #fff;
+  font-family: 'Open Sans', sans-serif;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  overflow: hidden;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  overflow: scroll;
+  min-height: 100vh;
+  height: 100vh;
+  position: relative;
+}
+/*Popup styling*/
+.body-blackout {
+  position: absolute;
+  z-index: 1010;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .65);
+  display: none;
+}
+.body-blackout.is-blacked-out {
+  display: block;
+}
+.popup-trigger {
+  display: inline-block;
+}
+.popup-modal {
+  height: 75vh;
+  width: 75vw;
+  max-height: 75vh;
+  background-color: #fff;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 1.5rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 300ms ease-in-out;
+  z-index: 1011;
+  background: #334d41;
+  color: #fff;
+}
+.popup-modal.cheat-sheet {
+  height: unset;
+  width: unset;
+  padding: 0;
+}
+.popup-modal.is--visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+.popup-modal__close {
+  position: absolute;
+  font-size: 1.2rem;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+  padding: 1rem 2rem;
+  border: 1px solid #fff;
+  color: #fff;
+  background: transparent;
+}
+.cheat-sheet .popup-modal__close {
+  top: -54px;
+  right: 2px;
+}
+.cheat-sheet img {
+  max-width: 90vw;
+}
+.popup-modal__close:hover {
+  background: #fff;
+  color: #444;
+}
+/*.popup-modal h2,*/
+.popup-modal p {
+  margin: 0;
+}
+.popup-modal dt {
+  font-weight: bold;
+  margin-top: .5em;
+}
+/*end*/
+#container {
+  position: fixed;
+  top: calc(50% + 1.5rem);
+  left: 50%;
+  -webkit-transform: translate3d(-50%, -50%, 0);
+  -moz-transform: translate3d(-50%, -50%, 0);
+  -o-transform: translate3d(-50%, -50%, 0);
+  -ms-transform: translate3d(-50%, -50%, 0);
+  transform: translate3d(-50%, -50%, 0);
+}
+#index #container {
+  position: static;
+  -webkit-transform: none;
+  transform: none;
+}
+#topbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #334d41;
+  padding: 0.25rem;
+  text-align: center;
+  z-index: 99;
+  display: flex;
+  justify-content: center;
+}
+#topbar button,
+#topbar a,
+.example {
+  background: none;
+  border: 1px solid #fff;
+  outline: none;
+  margin: 0.1rem;
+  padding: 0.4rem;
+  font: inherit;
+  font-size: 0.75rem;
+  line-height: 1;
+  color: #fff;
+  cursor: pointer;
+}
+.example {
+  cursor: initial;
+}
+#index .example {
+  line-height: 3;
+}
+#topbar button:hover,
+#topbar a:hover {
+  background-color: #fff;
+  color: #444;
+}
+
+#topbar ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  padding: .4rem;
+  margin: 0.1rem;
+}
+
+#topbar li a {
+  text-decoration: none;
+}
+
+.message {
+  position: fixed;
+  top: 2.5rem;
+  left: 0;
+  font-size: 1.25rem;
+  text-align: center;
+  color: #fff;
+}
+#index .message {
+  position: static;
+  text-align: center;
+  max-width: 1100px;
+  margin: 5rem auto;
+  font-size: 1.25rem;
+}
+.message ol {
+  text-align: left;
+}
+.card {
+  position: absolute;
+  display: inline-block;
+  left: -9rem;
+  top: 1rem;
+  width: 400px;
+  height: 260px;
+  background-color: #fff;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.15);
+  box-shadow: 0 1px 1px rgba(0,0,0,0.15);
+  cursor: default;
+  will-change: transform;
+}
+.card:before,
+.card:after {
+  position: absolute;
+  font-size: 0.7rem;
+  text-align: center;
+  line-height: 0.7rem;
+  font-family: 'Ubuntu Condensed', sans-serif;
+  white-space: pre-line;
+  width: 0.55rem;
+  letter-spacing: -0.1rem;
+}
+.card:before {
+  top: 0.15rem;
+  left: 0;
+}
+.card:after {
+  bottom: 0.1rem;
+  right: 0;
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+.card .face {
+  height: 100%;
+  background-position: 50% 50%;
+  -webkit-background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.card .back {
+  position: absolute;
+  background-position: 50% 50%;
+  -webkit-background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+#heliodor .card .back {
+  background-image: url("../images/back-heliodor.png");
+}
+#hessonite .card .back {
+  background-image: url("../images/back-hessonite.png");
+}
+#pearl .card .back {
+  background-image: url("../images/back-pearl.png");
+}
+#ruby .card .back {
+  background-image: url("../images/back-ruby.png");
+}
+#zircon .card .back {
+  background-image: url("../images/back-zircon.png");
+}
+.card.spades,
+.card.clubs,
+.card.joker {
+  color: #000;
+}
+.card.hearts,
+.card.diamonds,
+.card.joker.rank3 {
+  color: #d40000;
+}
+/*.card.joker.rank1:before,
+.card.joker.rank2:before,
+.card.joker.rank3:before,
+.card.joker.rank1:after,
+.card.joker.rank2:after,
+.card.joker.rank3:after {
+  content: "J\a O\a K\a E\a R";
+  letter-spacing: 0;
+  font-size: 0.4rem;
+  line-height: 0.4rem;
+  padding: 0.15rem 0.05rem;
+  width: 0.5rem;
+}*/
+/*.card.rank1:before,
+.card.rank1:after {
+  content: "A";
+}
+.card.rank2:before,
+.card.rank2:after {
+  content: "2";
+}
+.card.rank3:before,
+.card.rank3:after {
+  content: "3";
+}
+.card.rank4:before,
+.card.rank4:after {
+  content: "4";
+}
+.card.rank5:before,
+.card.rank5:after {
+  content: "5";
+}
+.card.rank6:before,
+.card.rank6:after {
+  content: "6";
+}
+.card.rank7:before,
+.card.rank7:after {
+  content: "7";
+}
+.card.rank8:before,
+.card.rank8:after {
+  content: "8";
+}
+.card.rank9:before,
+.card.rank9:after {
+  content: "9";
+}
+.card.rank10:before,
+.card.rank10:after {
+  content: "10";
+}
+.card.rank11:before,
+.card.rank11:after {
+  content: "J";
+}
+.card.rank12:before,
+.card.rank12:after {
+  content: "Q";
+}
+.card.rank13:before,
+.card.rank13:after {
+  content: "K";
+}
+*/
+
+/*Heliodor Cards*/
+#heliodor .card.spades.rank1 .face {
+  background-image: url("../images/basic-tech.png");
+}
+#heliodor .card.spades.rank2 .face {
+  background-image: url("../images/basic-pumped.png");
+}
+#heliodor .card.spades.rank3 .face {
+  background-image: url("../images/basic-pumped.png");
+}
+#heliodor .card.spades.rank4 .face {
+  background-image: url("../images/aggression-hurt.png");
+}
+#heliodor .card.spades.rank5 .face {
+  background-image: url("../images/aggression-scare.png");
+}
+#heliodor .card.spades.rank6 .face {
+  background-image: url("../images/basic-weapon.png");
+}
+#heliodor .card.spades.rank7 .face {
+  background-image: url("../images/basic-electrify.png");
+}
+#heliodor .card.spades.rank8 .face {
+  background-image: url("../images/basic-electrify.png");
+}
+#heliodor .card.spades.rank9 .face {
+  background-image: url("../images/mystic-ball-lightning.png");
+}
+#heliodor .card.spades.rank10 .face {
+  background-image: url("../images/basic-shape.png");
+}
+#heliodor .card.spades.rank11 .face {
+  background-image: url("../images/basic-guard.png");
+}
+#heliodor .card.spades.rank12 .face {
+  background-image: url("../images/basic-guard.png");
+}
+#heliodor .card.spades.rank13 .face {
+  background-image: url("../images/stability-distributed.png");
+}
+#heliodor .card.hearts.rank1 .face {
+  background-image: url("../images/stability-repair.png");
+}
+#heliodor .card.hearts.rank2 .face {
+  background-image: url("../images/1_2.svg");
+}
+#heliodor .card.hearts.rank3 .face {
+  background-image: url("../images/1_3.svg");
+}
+#heliodor .card.hearts.rank4 .face {
+  background-image: url("../images/1_4.svg");
+}
+#heliodor .card.hearts.rank5 .face {
+  background-image: url("../images/1_5.svg");
+}
+#heliodor .card.hearts.rank6 .face {
+  background-image: url("../images/1_6.svg");
+}
+#heliodor .card.hearts.rank7 .face {
+  background-image: url("../images/1_7.svg");
+}
+#heliodor .card.hearts.rank8 .face {
+  background-image: url("../images/1_8.svg");
+}
+#heliodor .card.hearts.rank9 .face {
+  background-image: url("../images/1_9.svg");
+}
+#heliodor .card.hearts.rank10 .face {
+  background-image: url("../images/1_10.svg");
+}
+#heliodor .card.hearts.rank11 .face {
+  background-image: url("../images/1_11.svg");
+}
+#heliodor .card.hearts.rank12 .face {
+  background-image: url("../images/1_12.svg");
+}
+#heliodor .card.hearts.rank13 .face {
+  background-image: url("../images/1_13.svg");
+}
+#heliodor .card.clubs.rank1 .face {
+  background-image: url("../images/2_1.svg");
+}
+#heliodor .card.clubs.rank2 .face {
+  background-image: url("../images/2_2.svg");
+}
+#heliodor .card.clubs.rank3 .face {
+  background-image: url("../images/2_3.svg");
+}
+#heliodor .card.clubs.rank4 .face {
+  background-image: url("../images/2_4.svg");
+}
+#heliodor .card.clubs.rank5 .face {
+  background-image: url("../images/2_5.svg");
+}
+#heliodor .card.clubs.rank6 .face {
+  background-image: url("../images/2_6.svg");
+}
+#heliodor .card.clubs.rank7 .face {
+  background-image: url("../images/2_7.svg");
+}
+#heliodor .card.clubs.rank8 .face {
+  background-image: url("../images/2_8.svg");
+}
+#heliodor .card.clubs.rank9 .face {
+  background-image: url("../images/2_9.svg");
+}
+#heliodor .card.clubs.rank10 .face {
+  background-image: url("../images/2_10.svg");
+}
+#heliodor .card.clubs.rank11 .face {
+  background-image: url("../images/2_11.svg");
+}
+#heliodor .card.clubs.rank12 .face {
+  background-image: url("../images/2_12.svg");
+}
+#heliodor .card.clubs.rank13 .face {
+  background-image: url("../images/2_13.svg");
+}
+#heliodor .card.diamonds.rank1 .face {
+  background-image: url("../images/3_1.svg");
+}
+#heliodor .card.diamonds.rank2 .face {
+  background-image: url("../images/3_2.svg");
+}
+#heliodor .card.diamonds.rank3 .face {
+  background-image: url("../images/3_3.svg");
+}
+#heliodor .card.diamonds.rank4 .face {
+  background-image: url("../images/3_4.svg");
+}
+#heliodor .card.diamonds.rank5 .face {
+  background-image: url("../images/3_5.svg");
+}
+#heliodor .card.diamonds.rank6 .face {
+  background-image: url("../images/3_6.svg");
+}
+#heliodor .card.diamonds.rank7 .face {
+  background-image: url("../images/3_7.svg");
+}
+#heliodor .card.diamonds.rank8 .face {
+  background-image: url("../images/3_8.svg");
+}
+#heliodor .card.diamonds.rank9 .face {
+  background-image: url("../images/3_9.svg");
+}
+#heliodor .card.diamonds.rank10 .face {
+  background-image: url("../images/3_10.svg");
+}
+#heliodor .card.diamonds.rank11 .face {
+  background-image: url("../images/3_11.svg");
+}
+#heliodor .card.diamonds.rank12 .face {
+  background-image: url("../images/3_12.svg");
+}
+#heliodor .card.diamonds.rank13 .face {
+  background-image: url("../images/3_13.svg");
+}
+#heliodor .card.joker.rank1 .face {
+  background-image: url("../images/4_1.svg");
+}
+#heliodor .card.joker.rank2 .face {
+  background-image: url("../images/4_2.svg");
+}
+#heliodor .card.joker.rank3 .face {
+  background-image: url("../images/4_3.svg");
+}
+/*End Heliodor Cards*/
+
+/*Hessonite Cards*/
+#hessonite .card.spades.rank1 .face {
+  background-image: url("../images/reason-joke.png");
+}
+#hessonite .card.spades.rank2 .face {
+  background-image: url("../images/basic-tech.png");
+}
+#hessonite .card.spades.rank3 .face {
+  background-image: url("../images/basic-tech.png");
+}
+#hessonite .card.spades.rank4 .face {
+  background-image: url("../images/reason-stand.png");
+}
+#hessonite .card.spades.rank5 .face {
+  background-image: url("../images/basic-pumped.png");
+}
+#hessonite .card.spades.rank6 .face {
+  background-image: url("../images/basic-weapon.png");
+}
+#hessonite .card.spades.rank7 .face {
+  background-image: url("../images/basic-weapon.png");
+}
+#hessonite .card.spades.rank8 .face {
+  background-image: url("../images/martial-mace-smash.png");
+}
+#hessonite .card.spades.rank9 .face {
+  background-image: url("../images/basic-dust.png");
+}
+#hessonite .card.spades.rank10 .face {
+  background-image: url("../images/basic-shape.png");
+}
+#hessonite .card.spades.rank11 .face {
+  background-image: url("../images/basic-guard.png");
+}
+#hessonite .card.spades.rank12 .face {
+  background-image: url("../images/basic-guard.png");
+}
+#hessonite .card.spades.rank13 .face {
+  background-image: url("../images/stability-indefatigable.png");
+}
+#hessonite .card.hearts.rank1 .face {
+  background-image: url("../images/flexibility-shorty.png");
+}
+#hessonite .card.hearts.rank2 .face {
+  background-image: url("../images/basic-guard.png");
+}
+#hessonite .card.hearts.rank3 .face {
+  background-image: url("../images/basic-guard.png");
+}
+#hessonite .card.hearts.rank4 .face {
+  background-image: url("../images/stability-hide.png");
+}
+#hessonite .card.hearts.rank5 .face {
+  background-image: url("../images/1_5.svg");
+}
+#hessonite .card.hearts.rank6 .face {
+  background-image: url("../images/1_6.svg");
+}
+#hessonite .card.hearts.rank7 .face {
+  background-image: url("../images/1_7.svg");
+}
+#hessonite .card.hearts.rank8 .face {
+  background-image: url("../images/1_8.svg");
+}
+#hessonite .card.hearts.rank9 .face {
+  background-image: url("../images/1_9.svg");
+}
+#hessonite .card.hearts.rank10 .face {
+  background-image: url("../images/1_10.svg");
+}
+#hessonite .card.hearts.rank11 .face {
+  background-image: url("../images/1_11.svg");
+}
+#hessonite .card.hearts.rank12 .face {
+  background-image: url("../images/1_12.svg");
+}
+#hessonite .card.hearts.rank13 .face {
+  background-image: url("../images/1_13.svg");
+}
+#hessonite .card.clubs.rank1 .face {
+  background-image: url("../images/2_1.svg");
+}
+#hessonite .card.clubs.rank2 .face {
+  background-image: url("../images/2_2.svg");
+}
+#hessonite .card.clubs.rank3 .face {
+  background-image: url("../images/2_3.svg");
+}
+#hessonite .card.clubs.rank4 .face {
+  background-image: url("../images/2_4.svg");
+}
+#hessonite .card.clubs.rank5 .face {
+  background-image: url("../images/2_5.svg");
+}
+#hessonite .card.clubs.rank6 .face {
+  background-image: url("../images/2_6.svg");
+}
+#hessonite .card.clubs.rank7 .face {
+  background-image: url("../images/2_7.svg");
+}
+#hessonite .card.clubs.rank8 .face {
+  background-image: url("../images/2_8.svg");
+}
+#hessonite .card.clubs.rank9 .face {
+  background-image: url("../images/2_9.svg");
+}
+#hessonite .card.clubs.rank10 .face {
+  background-image: url("../images/2_10.svg");
+}
+#hessonite .card.clubs.rank11 .face {
+  background-image: url("../images/2_11.svg");
+}
+#hessonite .card.clubs.rank12 .face {
+  background-image: url("../images/2_12.svg");
+}
+#hessonite .card.clubs.rank13 .face {
+  background-image: url("../images/2_13.svg");
+}
+#hessonite .card.diamonds.rank1 .face {
+  background-image: url("../images/3_1.svg");
+}
+#hessonite .card.diamonds.rank2 .face {
+  background-image: url("../images/3_2.svg");
+}
+#hessonite .card.diamonds.rank3 .face {
+  background-image: url("../images/3_3.svg");
+}
+#hessonite .card.diamonds.rank4 .face {
+  background-image: url("../images/3_4.svg");
+}
+#hessonite .card.diamonds.rank5 .face {
+  background-image: url("../images/3_5.svg");
+}
+#hessonite .card.diamonds.rank6 .face {
+  background-image: url("../images/3_6.svg");
+}
+#hessonite .card.diamonds.rank7 .face {
+  background-image: url("../images/3_7.svg");
+}
+#hessonite .card.diamonds.rank8 .face {
+  background-image: url("../images/3_8.svg");
+}
+#hessonite .card.diamonds.rank9 .face {
+  background-image: url("../images/3_9.svg");
+}
+#hessonite .card.diamonds.rank10 .face {
+  background-image: url("../images/3_10.svg");
+}
+#hessonite .card.diamonds.rank11 .face {
+  background-image: url("../images/3_11.svg");
+}
+#hessonite .card.diamonds.rank12 .face {
+  background-image: url("../images/3_12.svg");
+}
+#hessonite .card.diamonds.rank13 .face {
+  background-image: url("../images/3_13.svg");
+}
+#hessonite .card.joker.rank1 .face {
+  background-image: url("../images/4_1.svg");
+}
+#hessonite .card.joker.rank2 .face {
+  background-image: url("../images/4_2.svg");
+}
+#hessonite .card.joker.rank3 .face {
+  background-image: url("../images/4_3.svg");
+}
+
+/*End Hessonite Cards*/
+
+/*Pearl Cards*/
+#pearl .card.spades.rank1 .face {
+  background-image: url("../images/reason-hurry.png");
+}
+#pearl .card.spades.rank2 .face {
+  background-image: url("../images/basic-tech.png");
+}
+#pearl .card.spades.rank3 .face {
+  background-image: url("../images/basic-tech.png");
+}
+#pearl .card.spades.rank4 .face {
+  background-image: url("../images/reason-flinch.png");
+}
+#pearl .card.spades.rank5 .face {
+  background-image: url("../images/basic-pumped.png");
+}
+#pearl .card.spades.rank6 .face {
+  background-image: url("../images/basic-weapon.png");
+}
+#pearl .card.spades.rank7 .face {
+  background-image: url("../images/basic-weapon.png");
+}
+#pearl .card.spades.rank8 .face {
+  background-image: url("../images/martial-fleche.png");
+}
+#pearl .card.spades.rank9 .face {
+  background-image: url("../images/martial-lunge.png");
+}
+#pearl .card.spades.rank10 .face {
+  background-image: url("../images/basic-flash.png");
+}
+#pearl .card.spades.rank11 .face {
+  background-image: url("../images/basic-shape.png");
+}
+#pearl .card.spades.rank12 .face {
+  background-image: url("../images/basic-shape.png");
+}
+#pearl .card.spades.rank13 .face {
+  background-image: url("../images/flexibility-backflip.png");
+}
+#pearl .card.hearts.rank1 .face {
+  background-image: url("../images/flexibility-shorty.png");
+}
+#pearl .card.hearts.rank2 .face {
+  background-image: url("../images/basic-guard.png");
+}
+#pearl .card.hearts.rank3 .face {
+  background-image: url("../images/basic-guard.png");
+}
+#pearl .card.hearts.rank4 .face {
+  background-image: url("../images/stability-hide.png");
+}
+#pearl .card.hearts.rank5 .face {
+  background-image: url("../images/1_5.svg");
+}
+#pearl .card.hearts.rank6 .face {
+  background-image: url("../images/1_6.svg");
+}
+#pearl .card.hearts.rank7 .face {
+  background-image: url("../images/1_7.svg");
+}
+#pearl .card.hearts.rank8 .face {
+  background-image: url("../images/1_8.svg");
+}
+#pearl .card.hearts.rank9 .face {
+  background-image: url("../images/1_9.svg");
+}
+#pearl .card.hearts.rank10 .face {
+  background-image: url("../images/1_10.svg");
+}
+#pearl .card.hearts.rank11 .face {
+  background-image: url("../images/1_11.svg");
+}
+#pearl .card.hearts.rank12 .face {
+  background-image: url("../images/1_12.svg");
+}
+#pearl .card.hearts.rank13 .face {
+  background-image: url("../images/1_13.svg");
+}
+#pearl .card.clubs.rank1 .face {
+  background-image: url("../images/2_1.svg");
+}
+#pearl .card.clubs.rank2 .face {
+  background-image: url("../images/2_2.svg");
+}
+#pearl .card.clubs.rank3 .face {
+  background-image: url("../images/2_3.svg");
+}
+#pearl .card.clubs.rank4 .face {
+  background-image: url("../images/2_4.svg");
+}
+#pearl .card.clubs.rank5 .face {
+  background-image: url("../images/2_5.svg");
+}
+#pearl .card.clubs.rank6 .face {
+  background-image: url("../images/2_6.svg");
+}
+#pearl .card.clubs.rank7 .face {
+  background-image: url("../images/2_7.svg");
+}
+#pearl .card.clubs.rank8 .face {
+  background-image: url("../images/2_8.svg");
+}
+#pearl .card.clubs.rank9 .face {
+  background-image: url("../images/2_9.svg");
+}
+#pearl .card.clubs.rank10 .face {
+  background-image: url("../images/2_10.svg");
+}
+#pearl .card.clubs.rank11 .face {
+  background-image: url("../images/2_11.svg");
+}
+#pearl .card.clubs.rank12 .face {
+  background-image: url("../images/2_12.svg");
+}
+#pearl .card.clubs.rank13 .face {
+  background-image: url("../images/2_13.svg");
+}
+#pearl .card.diamonds.rank1 .face {
+  background-image: url("../images/3_1.svg");
+}
+#pearl .card.diamonds.rank2 .face {
+  background-image: url("../images/3_2.svg");
+}
+#pearl .card.diamonds.rank3 .face {
+  background-image: url("../images/3_3.svg");
+}
+#pearl .card.diamonds.rank4 .face {
+  background-image: url("../images/3_4.svg");
+}
+#pearl .card.diamonds.rank5 .face {
+  background-image: url("../images/3_5.svg");
+}
+#pearl .card.diamonds.rank6 .face {
+  background-image: url("../images/3_6.svg");
+}
+#pearl .card.diamonds.rank7 .face {
+  background-image: url("../images/3_7.svg");
+}
+#pearl .card.diamonds.rank8 .face {
+  background-image: url("../images/3_8.svg");
+}
+#pearl .card.diamonds.rank9 .face {
+  background-image: url("../images/3_9.svg");
+}
+#pearl .card.diamonds.rank10 .face {
+  background-image: url("../images/3_10.svg");
+}
+#pearl .card.diamonds.rank11 .face {
+  background-image: url("../images/3_11.svg");
+}
+#pearl .card.diamonds.rank12 .face {
+  background-image: url("../images/3_12.svg");
+}
+#pearl .card.diamonds.rank13 .face {
+  background-image: url("../images/3_13.svg");
+}
+#pearl .card.joker.rank1 .face {
+  background-image: url("../images/4_1.svg");
+}
+#pearl .card.joker.rank2 .face {
+  background-image: url("../images/4_2.svg");
+}
+#pearl .card.joker.rank3 .face {
+  background-image: url("../images/4_3.svg");
+}
+
+/*End Pearl Cards*/
+
+/*Ruby Cards*/
+#ruby .card.spades.rank1 .face {
+  background-image: url("../images/reason-practice.png");
+}
+#ruby .card.spades.rank2 .face {
+  background-image: url("../images/basic-tech.png");
+}
+#ruby .card.spades.rank3 .face {
+  background-image: url("../images/basic-tech.png");
+}
+#ruby .card.spades.rank4 .face {
+  background-image: url("../images/reason-outtalk.png");
+}
+#ruby .card.spades.rank5 .face {
+  background-image: url("../images/basic-pumped.png");
+}
+#ruby .card.spades.rank6 .face {
+  background-image: url("../images/basic-weapon.png");
+}
+#ruby .card.spades.rank7 .face {
+  background-image: url("../images/basic-sear.png");
+}
+#ruby .card.spades.rank8 .face {
+  background-image: url("../images/basic-sear.png");
+}
+#ruby .card.spades.rank9 .face {
+  background-image: url("../images/mystic-ember.png");
+}
+#ruby .card.spades.rank10 .face {
+  background-image: url("../images/mystic-flamethrower.png");
+}
+#ruby .card.spades.rank11 .face {
+  background-image: url("../images/basic-shape.png");
+}
+#ruby .card.spades.rank12 .face {
+  background-image: url("../images/basic-guard.png");
+}
+#ruby .card.spades.rank13 .face {
+  background-image: url("../images/basic-guard.png");
+}
+#ruby .card.hearts.rank1 .face {
+  background-image: url("../images/stability-scratch.png");
+}
+#ruby .card.hearts.rank2 .face {
+  background-image: url("../images/stability-healthful.png");
+}
+#ruby .card.hearts.rank3 .face {
+  background-image: url("../images/basic-guard.png");
+}
+#ruby .card.hearts.rank4 .face {
+  background-image: url("../images/stability-hide.png");
+}
+#ruby .card.hearts.rank5 .face {
+  background-image: url("../images/1_5.svg");
+}
+#ruby .card.hearts.rank6 .face {
+  background-image: url("../images/1_6.svg");
+}
+#ruby .card.hearts.rank7 .face {
+  background-image: url("../images/1_7.svg");
+}
+#ruby .card.hearts.rank8 .face {
+  background-image: url("../images/1_8.svg");
+}
+#ruby .card.hearts.rank9 .face {
+  background-image: url("../images/1_9.svg");
+}
+#ruby .card.hearts.rank10 .face {
+  background-image: url("../images/1_10.svg");
+}
+#ruby .card.hearts.rank11 .face {
+  background-image: url("../images/1_11.svg");
+}
+#ruby .card.hearts.rank12 .face {
+  background-image: url("../images/1_12.svg");
+}
+#ruby .card.hearts.rank13 .face {
+  background-image: url("../images/1_13.svg");
+}
+#ruby .card.clubs.rank1 .face {
+  background-image: url("../images/2_1.svg");
+}
+#ruby .card.clubs.rank2 .face {
+  background-image: url("../images/2_2.svg");
+}
+#ruby .card.clubs.rank3 .face {
+  background-image: url("../images/2_3.svg");
+}
+#ruby .card.clubs.rank4 .face {
+  background-image: url("../images/2_4.svg");
+}
+#ruby .card.clubs.rank5 .face {
+  background-image: url("../images/2_5.svg");
+}
+#ruby .card.clubs.rank6 .face {
+  background-image: url("../images/2_6.svg");
+}
+#ruby .card.clubs.rank7 .face {
+  background-image: url("../images/2_7.svg");
+}
+#ruby .card.clubs.rank8 .face {
+  background-image: url("../images/2_8.svg");
+}
+#ruby .card.clubs.rank9 .face {
+  background-image: url("../images/2_9.svg");
+}
+#ruby .card.clubs.rank10 .face {
+  background-image: url("../images/2_10.svg");
+}
+#ruby .card.clubs.rank11 .face {
+  background-image: url("../images/2_11.svg");
+}
+#ruby .card.clubs.rank12 .face {
+  background-image: url("../images/2_12.svg");
+}
+#ruby .card.clubs.rank13 .face {
+  background-image: url("../images/2_13.svg");
+}
+#ruby .card.diamonds.rank1 .face {
+  background-image: url("../images/3_1.svg");
+}
+#ruby .card.diamonds.rank2 .face {
+  background-image: url("../images/3_2.svg");
+}
+#ruby .card.diamonds.rank3 .face {
+  background-image: url("../images/3_3.svg");
+}
+#ruby .card.diamonds.rank4 .face {
+  background-image: url("../images/3_4.svg");
+}
+#ruby .card.diamonds.rank5 .face {
+  background-image: url("../images/3_5.svg");
+}
+#ruby .card.diamonds.rank6 .face {
+  background-image: url("../images/3_6.svg");
+}
+#ruby .card.diamonds.rank7 .face {
+  background-image: url("../images/3_7.svg");
+}
+#ruby .card.diamonds.rank8 .face {
+  background-image: url("../images/3_8.svg");
+}
+#ruby .card.diamonds.rank9 .face {
+  background-image: url("../images/3_9.svg");
+}
+#ruby .card.diamonds.rank10 .face {
+  background-image: url("../images/3_10.svg");
+}
+#ruby .card.diamonds.rank11 .face {
+  background-image: url("../images/3_11.svg");
+}
+#ruby .card.diamonds.rank12 .face {
+  background-image: url("../images/3_12.svg");
+}
+#ruby .card.diamonds.rank13 .face {
+  background-image: url("../images/3_13.svg");
+}
+#ruby .card.joker.rank1 .face {
+  background-image: url("../images/4_1.svg");
+}
+#ruby .card.joker.rank2 .face {
+  background-image: url("../images/4_2.svg");
+}
+#ruby .card.joker.rank3 .face {
+  background-image: url("../images/4_3.svg");
+}
+
+/*End Ruby Cards*/
+
+/*Zircon Cards*/
+#zircon .card.spades.rank1 .face {
+  background-image: url("../images/reason-weakness.png");
+}
+#zircon .card.spades.rank2 .face {
+  background-image: url("../images/basic-tech.png");
+}
+#zircon .card.spades.rank3 .face {
+  background-image: url("../images/basic-tech.png");
+}
+#zircon .card.spades.rank4 .face {
+  background-image: url("../images/reason-weakspot.png");
+}
+#zircon .card.spades.rank5 .face {
+  background-image: url("../images/reason-outtalk.png");
+}
+#zircon .card.spades.rank6 .face {
+  background-image: url("../images/basic-pumped.png");
+}
+#zircon .card.spades.rank7 .face {
+  background-image: url("../images/basic-weapon.png");
+}
+#zircon .card.spades.rank8 .face {
+  background-image: url("../images/basic-weapon.png");
+}
+#zircon .card.spades.rank9 .face {
+  background-image: url("../images/martial-halberd.png");
+}
+#zircon .card.spades.rank10 .face {
+  background-image: url("../images/martial-assault.png");
+}
+#zircon .card.spades.rank11 .face {
+  background-image: url("../images/basic-gust.png");
+}
+#zircon .card.spades.rank12 .face {
+  background-image: url("../images/basic-shape.png");
+}
+#zircon .card.spades.rank13 .face {
+  background-image: url("../images/basic-shape.png");
+}
+#zircon .card.hearts.rank1 .face {
+  background-image: url("../images/flexibility-copycat.png");
+}
+#zircon .card.hearts.rank2 .face {
+  background-image: url("../images/flexibility-jump-attack.png");
+}
+#zircon .card.hearts.rank3 .face {
+  background-image: url("../images/basic-guard.png");
+}
+#zircon .card.hearts.rank4 .face {
+  background-image: url("../images/stability-hide.png");
+}
+#zircon .card.hearts.rank5 .face {
+  background-image: url("../images/1_5.svg");
+}
+#zircon .card.hearts.rank6 .face {
+  background-image: url("../images/1_6.svg");
+}
+#zircon .card.hearts.rank7 .face {
+  background-image: url("../images/1_7.svg");
+}
+#zircon .card.hearts.rank8 .face {
+  background-image: url("../images/1_8.svg");
+}
+#zircon .card.hearts.rank9 .face {
+  background-image: url("../images/1_9.svg");
+}
+#zircon .card.hearts.rank10 .face {
+  background-image: url("../images/1_10.svg");
+}
+#zircon .card.hearts.rank11 .face {
+  background-image: url("../images/1_11.svg");
+}
+#zircon .card.hearts.rank12 .face {
+  background-image: url("../images/1_12.svg");
+}
+#zircon .card.hearts.rank13 .face {
+  background-image: url("../images/1_13.svg");
+}
+#zircon .card.clubs.rank1 .face {
+  background-image: url("../images/2_1.svg");
+}
+#zircon .card.clubs.rank2 .face {
+  background-image: url("../images/2_2.svg");
+}
+#zircon .card.clubs.rank3 .face {
+  background-image: url("../images/2_3.svg");
+}
+#zircon .card.clubs.rank4 .face {
+  background-image: url("../images/2_4.svg");
+}
+#zircon .card.clubs.rank5 .face {
+  background-image: url("../images/2_5.svg");
+}
+#zircon .card.clubs.rank6 .face {
+  background-image: url("../images/2_6.svg");
+}
+#zircon .card.clubs.rank7 .face {
+  background-image: url("../images/2_7.svg");
+}
+#zircon .card.clubs.rank8 .face {
+  background-image: url("../images/2_8.svg");
+}
+#zircon .card.clubs.rank9 .face {
+  background-image: url("../images/2_9.svg");
+}
+#zircon .card.clubs.rank10 .face {
+  background-image: url("../images/2_10.svg");
+}
+#zircon .card.clubs.rank11 .face {
+  background-image: url("../images/2_11.svg");
+}
+#zircon .card.clubs.rank12 .face {
+  background-image: url("../images/2_12.svg");
+}
+#zircon .card.clubs.rank13 .face {
+  background-image: url("../images/2_13.svg");
+}
+#zircon .card.diamonds.rank1 .face {
+  background-image: url("../images/3_1.svg");
+}
+#zircon .card.diamonds.rank2 .face {
+  background-image: url("../images/3_2.svg");
+}
+#zircon .card.diamonds.rank3 .face {
+  background-image: url("../images/3_3.svg");
+}
+#zircon .card.diamonds.rank4 .face {
+  background-image: url("../images/3_4.svg");
+}
+#zircon .card.diamonds.rank5 .face {
+  background-image: url("../images/3_5.svg");
+}
+#zircon .card.diamonds.rank6 .face {
+  background-image: url("../images/3_6.svg");
+}
+#zircon .card.diamonds.rank7 .face {
+  background-image: url("../images/3_7.svg");
+}
+#zircon .card.diamonds.rank8 .face {
+  background-image: url("../images/3_8.svg");
+}
+#zircon .card.diamonds.rank9 .face {
+  background-image: url("../images/3_9.svg");
+}
+#zircon .card.diamonds.rank10 .face {
+  background-image: url("../images/3_10.svg");
+}
+#zircon .card.diamonds.rank11 .face {
+  background-image: url("../images/3_11.svg");
+}
+#zircon .card.diamonds.rank12 .face {
+  background-image: url("../images/3_12.svg");
+}
+#zircon .card.diamonds.rank13 .face {
+  background-image: url("../images/3_13.svg");
+}
+#zircon .card.joker.rank1 .face {
+  background-image: url("../images/4_1.svg");
+}
+#zircon .card.joker.rank2 .face {
+  background-image: url("../images/4_2.svg");
+}
+#zircon .card.joker.rank3 .face {
+  background-image: url("../images/4_3.svg");
+}
+
+/*End Zircon cards*/
+@media (max-width: 540px) {
+  #topbar {
+    text-align: left;
+  }
+  .gh-ribbon {
+    -webkit-transform: scale(0.5);
+    -moz-transform: scale(0.5);
+    -o-transform: scale(0.5);
+    -ms-transform: scale(0.5);
+    transform: scale(0.5);
+    -webkit-transform-origin: 100% 0;
+    -moz-transform-origin: 100% 0;
+    -o-transform-origin: 100% 0;
+    -ms-transform-origin: 100% 0;
+    transform-origin: 100% 0;
+  }
+  .message {
+    font-size: 1rem;
+  }
+  #index #container {
+    position: absolute;
+    top: 50px;
+    left: 0px;
+    overflow: scroll;
+     -webkit-transform: none; 
+     transform: none;
+    padding: 20px;
+  }
+  .popup-modal {
+    height: 90vh;
+    width: 90vw;
+  }
+)
+@media (min-width: 640px) {
+  html {
+    font-size: 125%;
+  }
+}
+
+/*#heliodor div[class*='rank'] {
+  border: 2px solid red;
+}
+
+#heliodor .card:not([class*='rank']) {
+  border: 5px solid blue;
+}*/
+
+}

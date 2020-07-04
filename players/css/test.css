@@ -1,0 +1,74 @@
+@import 'https://fonts.googleapis.com/css?family=Open+Sans:300,400,700';
+ html {
+   box-sizing: border-box;
+}
+ *, *:before, *:after {
+   box-sizing: inherit;
+}
+ html, body {
+   font-family: 'Open Sans', sans-serif;
+   padding: 0;
+   margin: 0;
+}
+ body {
+   background-color: #f6f6f6;
+   min-height: 100vh;
+   height: 100vh;
+   padding: 35px;
+   position: relative;
+}
+ a {
+   text-decoration: none;
+   color: inherit;
+}
+
+.body-blackout {
+  position: absolute;
+  z-index: 1010;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .65);
+  display: none;
+}
+.body-blackout.is-blacked-out {
+  display: block;
+}
+.popup-trigger {
+  display: inline-block;
+}
+.popup-modal {
+  height: 40vh;
+  width: 75vw;
+  background-color: #fff;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 3rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 300ms ease-in-out;
+  z-index: 1011;
+  background: #334d41;
+  color: #fff;
+}
+.popup-modal.is--visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+.popup-modal__close {
+  position: absolute;
+  font-size: 1.2rem;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+  padding: 1rem 2rem;
+  border: 1px solid #fff;
+  color: #fff;
+}
+.popup-modal__close:hover {
+  background: #fff;
+  color: #444;
+}

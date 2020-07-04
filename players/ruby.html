@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Ruby Cards</title>
+        <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon" />
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body id="ruby">
+        <div class="body-blackout"></div>
+        <nav id="topbar">
+            <button
+              type="button"
+              class="popup-trigger"
+              data-popup-trigger="one">
+              Goals
+            </button>
+            <button
+              type="button"
+              class="popup-trigger"
+              data-popup-trigger="two">
+              Cheat sheet
+            </button>
+        </nav>
+        <main id="container"></main>
+        <aside
+          class="popup-modal shadow" 
+          data-popup-modal="one">
+          <button class="popup-modal__close">Close</button>
+          <h2>
+            Goals
+          </h2>
+          <dl>
+            <dt>Follower</dt>
+            <dd>Use the same kind of Attribute card as one other player 4 times in a row</dd>
+            <dt>Bumbler</dt>
+            <dd>Become Fallen due to a "Fail on a 1" twice</dd>
+          </dl>
+          <h2>
+            Points
+          </h2>
+          <ul>
+            <li>2 Flexibility</li>
+            <li>4 Reason</li>
+            <li>1 Stability</li>
+          </ul>
+          <h2>P Credits</h2>
+          <p>Your total: 12</p>
+          <h3>Ranges</h3>
+          <p>Rank 1: 0-14</p>
+          <p>Rank 2: 15-44</p>
+          <p>Rank 3: 45-89</p>
+          <p>Rank 4: 90-159</p>
+        </aside>
+        <aside
+          class="popup-modal shadow cheat-sheet" 
+          data-popup-modal="two">
+          <button class="popup-modal__close">Close</button>
+          <img alt="" loading="lazy" src="images/cheat-sheet-sear.png" />
+        </aside>
+        <script src="js/deck.js" defer></script>
+        <script src="js/popup.js" defer></script>
+        <script src="js/ruby-init.js" defer></script>
+    </body>
+</html>

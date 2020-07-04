@@ -1,123 +1,46 @@
 # HTML5 Deck of Cards
-[![Financial Contributors on Open Collective](https://opencollective.com/deck-of-cards/all/badge.svg?label=financial+contributors)](https://opencollective.com/deck-of-cards) [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/pakastin/deck-of-cards?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
-## NEW VERSION COMING UP!
+This is a fork of HTML5 Deck of Cards at https://deck.of.cards/old. This fork was made to allow for custom cards to be used for a homebrew Dungeons and Dragons (D&D) game based around the Crystal Gems universe from the show Steven Universe.
 
-The new **multiplayer** Deck of Cards is released at https://deck.of.cards, but will have it's cards library open sourced soon here!
-
-## Old version
-
-Pure vanilla JS (+ CSS3) – no dependencies, by [Juha Lindstedt](https://github.com/pakastin) & [contributors](https://github.com/pakastin/deck-of-cards/graphs/contributors).
-
-https://deck.of.cards/old
-
-[Install from Google Chrome Web Store](https://chrome.google.com/webstore/detail/html5-deck-of-cards/ljafdfknpepklmkhomgaocmehgfdcpno)
-
-Frontside card graphics are slightly modified from Chris Aguilar's awesome [Vector Playing Card Graphics Set](http://sourceforge.net/projects/vector-cards/).
-
-Also check out my [RE:DOM](https://redom.js.org) and [HTML5 Node Garden](https://nodegarden.js.org) projects!
-
-## Contributors
-
-### Code Contributors
-
-This project exists thanks to all the people who contribute. [[Contribute](CONTRIBUTING.md)].
-<a href="https://github.com/deck-of-cards/deck-of-cards/graphs/contributors"><img src="https://opencollective.com/deck-of-cards/contributors.svg?width=890&button=false" /></a>
-
-### Financial Contributors
-
-Become a financial contributor and help us sustain our community. [[Contribute](https://opencollective.com/deck-of-cards/contribute)]
-
-#### Individuals
-
-<a href="https://opencollective.com/deck-of-cards"><img src="https://opencollective.com/deck-of-cards/individuals.svg?width=890"></a>
-
-#### Organizations
-
-Support this project with your organization. Your logo will show up here with a link to your website. [[Contribute](https://opencollective.com/deck-of-cards/contribute)]
-
-<a href="https://opencollective.com/deck-of-cards/organization/0/website"><img src="https://opencollective.com/deck-of-cards/organization/0/avatar.svg"></a>
-<a href="https://opencollective.com/deck-of-cards/organization/1/website"><img src="https://opencollective.com/deck-of-cards/organization/1/avatar.svg"></a>
-<a href="https://opencollective.com/deck-of-cards/organization/2/website"><img src="https://opencollective.com/deck-of-cards/organization/2/avatar.svg"></a>
-<a href="https://opencollective.com/deck-of-cards/organization/3/website"><img src="https://opencollective.com/deck-of-cards/organization/3/avatar.svg"></a>
-<a href="https://opencollective.com/deck-of-cards/organization/4/website"><img src="https://opencollective.com/deck-of-cards/organization/4/avatar.svg"></a>
-<a href="https://opencollective.com/deck-of-cards/organization/5/website"><img src="https://opencollective.com/deck-of-cards/organization/5/avatar.svg"></a>
-<a href="https://opencollective.com/deck-of-cards/organization/6/website"><img src="https://opencollective.com/deck-of-cards/organization/6/avatar.svg"></a>
-<a href="https://opencollective.com/deck-of-cards/organization/7/website"><img src="https://opencollective.com/deck-of-cards/organization/7/avatar.svg"></a>
-<a href="https://opencollective.com/deck-of-cards/organization/8/website"><img src="https://opencollective.com/deck-of-cards/organization/8/avatar.svg"></a>
-<a href="https://opencollective.com/deck-of-cards/organization/9/website"><img src="https://opencollective.com/deck-of-cards/organization/9/avatar.svg"></a>
+Card graphics were made by the GM and made digital to allow the group to play remotely during quarantine.
 
 ## License
 
 LGPL if you use Chris Aguilar's [vector playing cards](http://sourceforge.net/projects/vector-cards/). Otherwise MIT.
 
-## Download
-
-- [Production version (~5 KB uncompressed)](https://deck-of-cards.js.org/dist/deck.min.js)
-- [Development version (~15 KB uncompressed)](https://deck-of-cards.js.org/dist/deck.js)
-
-## Installation from npm
-    npm install deck-of-cards
-
-Then add in your html file
-
-- In `<head>`:
-
-``` html
-<link rel="stylesheet" href="node_modules/deck-of-cards/example/example.css">
-```
-
-- At the end of the `<body>`:
-
-``` html
-<script src="node_modules/deck-of-cards/dist/deck.min.js"></script>
-```
-
-
 ## Usage
+
+I've written this as an entirely flat and client side site with locally hosted files, this means that everything happens locally in a users browser and is not shared between players.
+
+To get setup, you'll want to download the players folder from the project. Then take a look at one of the gem named files. This readme will use Ruby as the example. Inside the Ruby.html file are several notable items.
+
+### Overview
+
+1. Each character has their own deck of cards and page. They each have information that is independent of other players.
+2. I've added two popups to the site to allow for quick access to in game information. These are different for each player. They are defined by the popup.js file. That popup was modified from here: https://medium.com/@GistCoding/simple-popup-modal-with-vanilla-javascript-a14515ec630b with edits mostly for more semantic HTML markup.
+3. Other than the popup text, the majority of the content on each page is entirely generated by javascript. There are two pieces to this - the deck.js file that is the engine for running all of the cards, and the ruby.init.js file that initializes the engine for that specific page. The deck.js file is shared for all players, but each player has their own init file because they each use different decks of cards with different counts for those cards.
+4. Everything happens locally in the browser client side, so you can technically run this locally without a problem, or just throw all the files on a server.
+
+### init.js
+
+1. The init.js file for each player determines what their page gets generated with. You can uncomment different $topbar buttons to get additional functionality from deck.js. However, they were not needed for my game. The $poker and $fan options were sometimes helpful.
+2. The key part to generating each of the unique the decks is var deck = Deck(15). The function parameter is the total number of cards you need to generate. This is taking advantage of the function Deck(joker) in deck.js to generate decks of cards with non-standard numbers of cards.
+3. At the bottom of the init file is where you mount the entire deck and then shuffle it twice.
+
+### main.css
+
+1. I've added a unique ID to each player page. This allows me to target my CSS to each page, but allows me to have one CSS file for all players for ease of maintenance.
+2. The backs of the deck are defined by #ruby .card .back and just update that file.
+3. The deck.js still generates class names for the original 52 card deck, so I'm using those to style with new images, and just appending the images for the cards with the unique ID for each page.
+4. If a new card gets added you need to adjust the init.js file for that specific deck to increase the Deck(X) number, and also style the additional cards in the main.css file, and appropriately link the images for that card.
+
+### ruby.html
+
+1. To update the content of the popup, simply adjust the HTML inside of the two asides.
 
 ### Full example
 
-``` html
-<html>
-    <head>
-        <title>Cards</title>
-
-        <link rel="stylesheet" href="node_modules/deck-of-cards/example/example.css">
-    </head>
-    <body>
-        <script src="node_modules/deck-of-cards/dist/deck.min.js"></script>
-
-        <div id="container"></div>
-
-        <script>
-            var $container = document.getElementById('container');
-
-            // create Deck
-            var deck = Deck();
-
-            // add to DOM
-            deck.mount($container);
-
-            deck.cards.forEach(function (card, i) {
-                card.setSide(Math.random() < 0.5 ? 'front' : 'back');
-
-                // explode
-                card.animateTo({
-                    delay: 1000 + i * 2, // wait 1 second + i * 2 ms
-                    duration: 500,
-                    ease: 'quartOut',
-
-                    x: Math.random() * window.innerWidth - window.innerWidth / 2,
-                    y: Math.random() * window.innerHeight - window.innerHeight / 2
-                });
-            });
-        </script>
-    </body>
-</html>
-```
-
-Available on JsFiddle: http://jsfiddle.net/x0gjood1/
+Available at : https://speakerjones.com/ruby.html
 
 
 ### Javascript API
@@ -207,57 +130,8 @@ removedCards.forEach(function (removedCard) {
 
 Deck without Clubs: http://jsfiddle.net/L25facxj/
 
+## Future potential work
 
-## Build instructions
-
-    npm install
-    npm start
-
-(starts watching for changes..)
-
-## Latest changes
-- 0.1.4 card.animateTo() -method added –> simplier modules! [Simple example of usage](http://jsfiddle.net/x0gjood1/)
-- 0.1.3 JS animations (instead of CSS transitions)
-- 0.1.2 Backside graphics + setRankSuit (+ card.value -> card.rank!)
-- 0.1.1 Better organized modules + Chrome app 
-- 0.1.0 [Realistic face graphics](http://sourceforge.net/projects/vector-cards/), notice change of license for now..
-- 0.0.4 winning mode, simpler shuffling, CSS box-shadow change
-- 0.0.3 big refactoring – code now easier to follow and in smaller pieces
-- 0.0.2 made intro shorter & added "poker"
-- 0.0.1 initial version
-
-
-## Where's what?
-
-[css/](https://github.com/pakastin/deck-of-cards/tree/master/css) - CSS source (stylus + nib) of the example
-
-[chrome/](https://github.com/pakastin/deck-of-cards/tree/master/chrome) - [Chrome Web Store app](https://chrome.google.com/webstore/detail/html5-deck-of-cards/ljafdfknpepklmkhomgaocmehgfdcpno) source
-
-[dist/](https://github.com/pakastin/deck-of-cards/tree/master/dist) - deck.js & deck.min.js
-
-[example/](https://github.com/pakastin/deck-of-cards/tree/master/example) - https://deck-of-cards.js.org
-
-[lib/](https://github.com/pakastin/deck-of-cards/tree/master/lib) - JS (ES6) source of dist/deck.js - deck.js is also the main file
-
-[views/](https://github.com/pakastin/deck-of-cards/tree/master/views) - HTML source of the example
-
-
-## Note to self: todo
-
-- Make z-index temporary by reordering DOM elements between actions
-- Enhance API, make more flexible
-
-
-## Featured on
-- https://reddit.com/r/InternetIsBeautiful/comments/3jmq97/html5_deck_of_cards/
-- https://news.ycombinator.com/item?id=10164513
-- http://tympanus.net/codrops/collective/collective-184/
-- https://github.com/trending?since=weekly
-- https://twitter.com/fwa/status/639719192158171136
-- https://twitter.com/search?q=%22html5+deck+of+cards%22
-- https://theslackpost.com/tmpg
-- http://news.js.org/
-- http://boredmachine.com/go/rKv6A
-- http://www.moongift.jp/2015/09/html5-deck-of-cards-html5%E8%A3%BD%E3%81%AE%E3%83%88%E3%83%A9%E3%83%B3%E3%83%97/
-- http://www.blogduwebdesign.com/ressources-jeux/ressourcescreer-manipuler-cartes-HTML-Javascript-nodejs-Ruby/1933
-- http://fex.baidu.com/blog/2015/09/fex-weekly-07/
+- Create a discard pile so that only face down cards are shuffled and not all cards
+- Make the popup work better with keyboards and focus states
+- Add text backups to images

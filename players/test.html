@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Test Cards</title>
+        <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon" />
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body id="heliodor">
+        <div class="body-blackout"></div>
+        <nav id="topbar">
+            <button
+              type="button"
+              class="popup-trigger"
+              data-popup-trigger="one">
+              Goals
+            </button>
+            <button
+              type="button"
+              class="popup-trigger"
+              data-popup-trigger="two">
+              Cheat sheet
+            </button>
+        </nav>
+        <main id="container"></main>
+        <aside
+          class="popup-modal shadow" 
+          data-popup-modal="one">
+          <button class="popup-modal__close">Close</button>
+          <h2>
+            Goals
+          </h2>
+          <dl>
+            <dt>Keen Observer</dt>
+            <dd>Succeed on 3 perception checks in a row</dd>
+            <dt>Torturer</dt>
+            <dd>Deal 4 slight damage to fallen, blinded, or bound opponents</dd>
+        </dl>
+        </aside>
+        <aside
+          class="popup-modal shadow" 
+          data-popup-modal="two">
+          <button class="popup-modal__close">Close</button>
+          <h2>Non-Basic Cards</h2>
+          <h3>Alternate uses</h3>
+          <dl>
+            <dt>Reason</dt>
+            <dd>Take a card from your discard</dd>
+            <dt>Aggression</dt>
+            <dd>Gain 2d10 to next attack</dd>
+            <dt>Martial</dt>
+            <dd>Deal 1 slight damage</dd>
+            <dt>Mystic</dt>
+            <dd>Use magic</dd>
+            <dt>Flexibility</dt>
+            <dd>Draw 2 cards</dd>
+            <dt>Stability</dt>
+            <dd>Gain 2d10 to next defense</dd>
+            </dl>
+        </aside>
+        <script src="js/discard.js" defer></script>
+        <script src="js/popup.js" defer></script>
+        <script src="js/discard-init.js" defer></script>
+    </body>
+</html>
